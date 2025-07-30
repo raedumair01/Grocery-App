@@ -1,0 +1,21 @@
+const colors = {
+  primary: '#2F2E41',
+  secondary: '#999',
+  background: '#FFFFFF',
+  inputBackground: '#F5F5F5',
+  text: '#333',
+  checkboxFill: '#2F2E41',
+  checkboxBorder: '#999',
+  dot:'#999999',
+  error:'red',
+  borderBottomColor:'#EBEBEB',
+  category:'#f0f0f0',
+  card:'#F2F5FD',
+  productTitle:'#181725',
+  labelContainer:'#383749',
+  imgcontainer:'#F0F3FB',
+  detail:'#000',
+  desc:'#999',
+  addtocart:'#100F18',
+};
+export default colors;
