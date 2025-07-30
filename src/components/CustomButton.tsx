@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { fonts } from '../assets/fonts/fonts';
 import colors from '../constants/theme';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 type CustomButtonProps = TouchableOpacityProps & {
   title: string;
@@ -49,8 +50,10 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.background,
-    fontSize: 23,
+    fontSize:wp('4.5%'),
     fontFamily: fonts.nunitoExtraBold,
     textAlign: 'center',
+    lineHeight:23,
+    top:-3
   },
 });

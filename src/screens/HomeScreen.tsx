@@ -20,6 +20,7 @@ import { useProduct } from '../context/ProductContext';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import Product from '../data/products';
 import { useUser } from '../context/UserContext';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 type Product = {
   id: string;
@@ -152,17 +153,17 @@ const styles = StyleSheet.create({
   },
   welcome: {
     color: colors.secondary,
-    fontSize: 16,
+    fontSize:wp('5%'),
   },
   fullName: {
-    fontSize: 25,
+    fontSize:wp('6%'),
     fontFamily: fonts.nunitoBold,
     color: colors.primary,
   },
   profileImage: {
-    width: 46,
-    height: 46,
-    borderRadius: 23,
+    width: wp('15%'),
+    height: wp('15%'),
+    borderRadius: 50,
   },
  searchContainer: {
   paddingHorizontal: 20,
@@ -193,12 +194,12 @@ searchBar: {
   },
   offerTitle: {
     fontFamily: fonts.nunitoExtraBold,
-    fontSize: 22,
+    fontSize:wp('5%'),
     color: colors.primary,
   },
   seeAll: {
     fontFamily: fonts.nunitoBold,
-    fontSize: 14,
+    fontSize:wp('3.5%'),
     color: colors.primary,
   },
 
@@ -220,6 +221,8 @@ searchBar: {
   categoryText: {
     color: colors.primary,
     fontFamily: fonts.nunitoSemiBold,
+    fontSize:wp('3%')
+
   },
   activeText: {
     color:colors.background,
@@ -265,7 +268,7 @@ searchBar: {
     left: 16,
     width: 137.02,
     fontFamily: fonts.nunitoExtraBold,
-    fontSize: 16,
+    fontSize:wp('3%'),
     lineHeight: 20,
     color: colors.productTitle,
   },
@@ -284,17 +287,18 @@ searchBar: {
 
   labelText: {
     fontFamily: fonts.nunitoRegular,
-    fontSize: 12,
+    fontSize:wp('2.5%'),
     color: colors.background,
   },
 
   price: {
     position: 'absolute',
-    top: 208,
+    top:wp('50%'),
     left: 117,
     fontFamily: fonts.nunitoBold,
-    fontSize: 14,
+    fontSize:wp('3%'),
     color: colors.productTitle,
+    
   },
 
   addButton: {

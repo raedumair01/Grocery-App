@@ -19,6 +19,7 @@ import { fonts } from '../assets/fonts/fonts';
 import colors from '../constants/theme';
 import images from '../assets/images';
 import CustomTextInput from '../components/CustomTextInput';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Login'>;
 
@@ -81,6 +82,7 @@ const LoginScreen = () => {
         placeholder="Email Address"
         placeholderTextColor="#999"
         value={email}
+        style={styles.input}
         onChangeText={(text) => {
           setEmail(text);
           if (errors.email) validate();
@@ -95,6 +97,8 @@ const LoginScreen = () => {
         placeholderTextColor="#999"
         secureTextEntry
         value={password}
+        style={styles.input}
+
         onChangeText={(text) => {
           setPassword(text);
           if (errors.password) validate();
@@ -128,20 +132,31 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 54,
+    fontSize: wp('9%'),
     fontFamily: fonts.nunitoExtraBold,
     color: colors.primary,
     alignSelf: 'center',
     marginBottom: 30,
   },
   header: {
-    fontSize: 24,
+    fontSize: wp('6.5%'),
     fontFamily: fonts.nunitoExtraBold,
     color: colors.primary,
     alignSelf: 'center',
   },
+   input: {
+    height:wp('14%'),
+    width:wp('90%'),
+    borderRadius: 10,
+    backgroundColor: colors.inputBackground,
+    paddingHorizontal: 16,
+    marginBottom: 12,
+    fontSize:wp('3%'),
+    fontFamily: fonts.nunitoRegular,
+    color: colors.text,
+  },
   subtext: {
-    fontSize: 14,
+    fontSize: wp('3.3%'),
     color: colors.secondary,
     textAlign: 'center',
     marginBottom: 20,
@@ -157,11 +172,13 @@ const styles = StyleSheet.create({
   },
   loginButton: {
     marginVertical: 12,
-    width: '80%',
     alignSelf: 'center',
+     width: wp('75%'),
+    height: wp('15%'),
+
   },
   footerText: {
-    fontSize: 14,
+     fontSize:wp('3%'),
     color: colors.secondary,
     textAlign: 'center',
     marginTop: 20,
@@ -170,6 +187,7 @@ const styles = StyleSheet.create({
   signUp: {
     fontFamily: fonts.nunitoBold,
     color: colors.primary,
+     fontSize:wp('3%'),
   },
   bigcarrot: {
     position: 'absolute',

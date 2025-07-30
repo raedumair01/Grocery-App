@@ -11,13 +11,18 @@ import ReviewsIcon from '../assets/icons/Reviews';
 import { useProduct } from '../context/ProductContext';
 import { useNavigation } from '@react-navigation/native';
 import CartIcon from '../assets/icons/CartIcon';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 export default function ProductDetailScreen() {
   const { product, incrementWeight, decrementWeight, totalPrice } = useProduct();
 const { addToCart } = useProduct();
 const navigation = useNavigation();
+const [expanded, setExpanded] = useState(false);  // State for toggling description
 
 const [added, setAdded] = useState(false); 
+  const toggleDescription = () => {
+    setExpanded(!expanded);
+  };
 const handleAddToCart = () => {
   addToCart();
   setAdded(true);
@@ -78,10 +83,13 @@ const handleAddToCart = () => {
 
           <View style={styles.horizontalLine} />
 
-          <View style={styles.descriptionContainer}>
+           <View style={styles.descriptionContainer}>
             <CustomText style={styles.sectionTitle}>Description</CustomText>
-            <CustomText style={styles.descriptionText}>{product.description}
-              <CustomText style={styles.detailLink}>detail</CustomText>
+            <CustomText style={styles.descriptionText}>
+              {expanded ? product.description : product.description.slice(0, 100) + '...'}
+              <CustomText style={styles.detailLink} onPress={toggleDescription}>
+                {expanded ? ' ' : ' See more'}
+              </CustomText>
             </CustomText>
           </View>
 
@@ -122,6 +130,7 @@ const styles = StyleSheet.create({
     backgroundColor:colors.primary,
     padding: 14,
     borderRadius: 12,
+    
   },
   weightContainer: {
     backgroundColor:colors.primary,
@@ -134,7 +143,7 @@ const styles = StyleSheet.create({
   },
   weightText: {
     fontFamily: fonts.nunitoBold,
-    fontSize: 14,
+    fontSize:wp('3.5%'),
     color: '#fff',
   },
   imageContainer: {
@@ -142,8 +151,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   productImage: {
-    width: 280,
-    height: 280,
+    width:wp('100%'),
+    height: wp('65%'),
   },
   detailSection: {
     backgroundColor: '#fff',
@@ -160,12 +169,12 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   productName: {
-    fontSize: 20,
+    fontSize:wp('4.5%'),
     fontFamily: fonts.nunitoBold,
     color: colors.primary,
   },
   productPrice: {
-    fontSize: 18,
+    fontSize:wp('4.5%'),
     fontFamily: fonts.nunitoBold,
     color: '#000',
   },
@@ -187,7 +196,7 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   metricText: {
-    fontSize: 14,
+    fontSize:wp('2.5%'),
     fontFamily: fonts.nunitoRegular,
     color: colors.primary,
   },
@@ -195,13 +204,13 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   sectionTitle: {
-    fontSize: 15,
+    fontSize:wp('3.5%'),
     fontFamily: fonts.nunitoBold,
     color:colors.detail,
     marginBottom: 6,
   },
   descriptionText: {
-    fontSize: 13,
+    fontSize:wp('3%'),
     fontFamily: fonts.nunitoRegular,
     color:colors.desc,
     lineHeight: 20,
@@ -209,6 +218,7 @@ const styles = StyleSheet.create({
   detailLink: {
     color: colors.primary,
     fontFamily: fonts.nunitoBold,
+    fontSize:wp('3.5%')
   },
   bottomRow: {
     backgroundColor:colors.primary,
@@ -220,7 +230,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   totalPrice: {
-    fontSize: 24,
+    fontSize:wp('4.5%'),
     fontFamily: fonts.nunitoExtraBold,
     color: '#fff',
   },
@@ -233,7 +243,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   addToCartText: {
-    fontSize: 15,
+    fontSize:wp('3.5%'),
     fontFamily: fonts.nunitoExtraBold,
     color: '#fff',
     marginLeft: 10,

@@ -12,6 +12,7 @@ import colors from '../constants/theme';
 import images from '../assets/images';
 import CustomText from './CustomText';
 import CustomButton from './CustomButton';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const banners = [
   {
@@ -115,16 +116,19 @@ const styles = StyleSheet.create({
     height: 1,
     borderWidth: 1,
     marginHorizontal: 5,
+     left:wp('1%'),
   },
 
   dealText: {
+    left:wp('1%'),
     fontFamily: fonts.nunitoExtraBold,
-    fontSize: 24,
+    fontSize:wp('5%'),
+
   },
 
   discountText: {
     fontFamily: fonts.nunitoBold,
-    fontSize: 18,
+    fontSize:wp('3.5%'),
     marginBottom: 12,
   },
 
@@ -132,7 +136,7 @@ const styles = StyleSheet.create({
   backgroundColor: colors.primary,
   borderRadius: 30,
   paddingVertical: 8,
-  width: 100,
+  width:wp('34%'),
   alignItems: 'center', // Center text horizontally
   left:-30
 },
@@ -140,7 +144,8 @@ const styles = StyleSheet.create({
 
   buttonText: {
     fontFamily: fonts.nunitoBold,
-    fontSize: 14,
+    fontSize: wp('3%'),
     color:colors.background,
+    top:wp('0%')
   },
 });

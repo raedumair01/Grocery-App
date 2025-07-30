@@ -20,6 +20,7 @@ import colors from '../constants/theme';
 import CustomTextInput from '../components/CustomTextInput';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useUser } from '../context/UserContext';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 type RootStackParamList = {
   Login: undefined;
@@ -213,32 +214,33 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 54,
+    fontSize: wp('9%'),
     fontFamily: fonts.nunitoExtraBold,
     color: colors.primary,
     alignSelf: 'center',
-    marginBottom: 30,
+    marginBottom: 10,
   },
   header: {
-    fontSize: 24,
+    fontSize: wp('5%'),
     fontFamily: fonts.nunitoExtraBold,
     color: colors.primary,
     alignSelf: 'center',
   },
   subtext: {
-    fontSize: 14,
+    fontSize: wp('3.4%'),
     color: colors.secondary,
     textAlign: 'center',
     marginBottom: 20,
     fontFamily: fonts.nunitoRegular,
   },
   input: {
-    height: 52,
+    height:wp('14%'),
+    width:wp('90%'),
     borderRadius: 10,
     backgroundColor: colors.inputBackground,
     paddingHorizontal: 16,
     marginBottom: 12,
-    fontSize: 16,
+    fontSize:wp('3%'),
     fontFamily: fonts.nunitoRegular,
     color: colors.text,
   },
@@ -257,6 +259,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 14,
+     height:wp('14%'),
+    width:wp('90%'),
   },
   countryPickerWrapper: {
     flexDirection: 'row',
@@ -272,7 +276,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   code: {
-    fontSize: 16,
+    fontSize:wp('3%'),
     fontFamily: fonts.nunitoBold,
     color: colors.primary,
   },
@@ -282,7 +286,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.inputBackground,
     borderRadius: 10,
     paddingHorizontal: 16,
-    fontSize: 16,
+    fontSize:wp('3%'),
     fontFamily: fonts.nunitoRegular,
     color: colors.text,
     bottom:-8,
@@ -294,11 +298,11 @@ const styles = StyleSheet.create({
     marginVertical: 14,
   },
   checkbox: {
-    width: 22,
-    height: 22,
+    width:wp('5%'),
+    height:hp('3%'),
   },
   agreeText: {
-    fontSize: 13,
+    fontSize:wp('2.9%'),
     marginLeft: 10,
     color: colors.secondary,
     fontFamily: fonts.nunitoRegular,
@@ -307,11 +311,12 @@ const styles = StyleSheet.create({
   },
   createBtn: {
     marginVertical: 12,
-    width:'100%',
+     width: wp('75%'),
+    height: wp('15%'),
 
   },
   footerText: {
-    fontSize: 14,
+    fontSize:wp('3%'),
     color: colors.secondary,
     textAlign: 'center',
     marginTop: 20,
@@ -320,6 +325,8 @@ const styles = StyleSheet.create({
   signIn: {
     fontFamily: fonts.nunitoBold,
     color: colors.primary,
+    fontSize:wp('3%'),
+
   },
   bigcarrot: {
     position: 'absolute',

@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { fonts } from '../assets/fonts/fonts';
 import colors from '../constants/theme';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 type Variant = 'default' | 'search';
 
@@ -50,7 +51,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.inputBackground,
     paddingHorizontal: 16,
     marginBottom: 15,
-    fontSize: 16,
     fontFamily: fonts.nunitoRegular,
     color: colors.text,
   },
