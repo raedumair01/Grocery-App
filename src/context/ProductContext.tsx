@@ -25,6 +25,7 @@ type ProductContextType = {
   totalPrice: string;
   addToCart: () => void;
   removeFromCart: (id: string) => void;
+  clearCart: () => void; // Add clearCart function
 };
 
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
@@ -90,27 +91,30 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
 
   const totalPrice = (product.price * product.weight).toFixed(2);
 
- const addToCart = () => {
-  setCart((prev) => {
-    const existingIndex = prev.findIndex(
-      (item) => item.name === product.name && item.image === product.image
-    );
+  const addToCart = () => {
+    setCart((prev) => {
+      const existingIndex = prev.findIndex(
+        (item) => item.name === product.name && item.image === product.image
+      );
 
-    if (existingIndex !== -1) {
-      const updatedCart = [...prev];
-      updatedCart[existingIndex].weight += product.weight;
-      return updatedCart;
-    }
+      if (existingIndex !== -1) {
+        const updatedCart = [...prev];
+        updatedCart[existingIndex].weight += product.weight;
+        return updatedCart;
+      }
 
-    const id = `${product.name}-${Date.now()}`;
-    const newItem: CartItem = { ...product, id };
-    return [...prev, newItem];
-  });
-};
-
+      const id = `${product.name}-${Date.now()}`;
+      const newItem: CartItem = { ...product, id };
+      return [...prev, newItem];
+    });
+  };
 
   const removeFromCart = (id: string) => {
     setCart((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const clearCart = () => {
+    setCart([]); // Clears the cart
   };
 
   return (
@@ -124,6 +128,7 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
         totalPrice,
         addToCart,
         removeFromCart,
+        clearCart, // Expose clearCart function
       }}
     >
       {children}

@@ -20,6 +20,7 @@ import colors from '../constants/theme';
 import images from '../assets/images';
 import CustomTextInput from '../components/CustomTextInput';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import Feather from 'react-native-vector-icons/Feather';
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Login'>;
 
@@ -39,6 +40,7 @@ const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<LoginErrors>({});
+  const [showPassword, setShowPassword] = useState(false);
 
   const validate = () => {
     const newErrors: LoginErrors = {};
@@ -92,18 +94,28 @@ const LoginScreen = () => {
       />
       {errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
 
-      <CustomTextInput
-        placeholder="Password"
-        placeholderTextColor="#999"
-        secureTextEntry
-        value={password}
-        style={styles.input}
+      <View style={{ position: 'relative', width: '100%' }}>
+  <CustomTextInput
+    placeholder="Password"
+    style={[styles.input, password.length === 0 && styles.boldPlaceholder]}
+    value={password}
+    onChangeText={setPassword}
+    secureTextEntry={!showPassword}
+    placeholderTextColor="#999"
+  />
 
-        onChangeText={(text) => {
-          setPassword(text);
-          if (errors.password) validate();
-        }}
-      />
+  <TouchableOpacity
+    onPress={() => setShowPassword(!showPassword)}
+    style={styles.eye}
+  >
+    <Feather
+      name={showPassword ? 'eye' : 'eye-off'}
+      size={20}
+      color={colors.primary}
+    />
+  </TouchableOpacity>
+</View>
+
       {errors.password && <Text style={styles.errorText}>{errors.password}</Text>}
 
       <BottomShapeSvg style={styles.bottomShape} />
@@ -138,6 +150,13 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginBottom: 30,
   },
+  eye:{
+      position: 'absolute',
+      right: 20,
+      top: '45%',
+      transform: [{ translateY: -12 }],
+      zIndex: 1,
+  },
   header: {
     fontSize: wp('6.5%'),
     fontFamily: fonts.nunitoExtraBold,
@@ -169,6 +188,10 @@ const styles = StyleSheet.create({
     fontFamily: fonts.nunitoRegular,
     marginBottom: 8,
     marginLeft: 4,
+  },
+    boldPlaceholder: {
+    color: colors.primary,
+    fontFamily: fonts.nunitoBold,
   },
   loginButton: {
     marginVertical: 12,

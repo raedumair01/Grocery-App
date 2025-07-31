@@ -21,6 +21,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import Product from '../data/products';
 import { useUser } from '../context/UserContext';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import TopTabNavigator from '../routes/TopTabNavigator'; // adjust path if different
 
 type Product = {
   id: string;
@@ -80,19 +81,11 @@ const { setSelectedProduct, addToCart} = useProduct();
     </TouchableOpacity>
   </View>
 </View>
-        <View style={styles.categoryContainer}>
-          {categories.map((cat) => (
-            <TouchableOpacity
-              key={cat}
-              onPress={() => setSelectedCategory(cat)}
-              style={[styles.categoryChip, selectedCategory === cat && styles.activeChip]}>
-              <CustomText
-                style={[styles.categoryText, selectedCategory === cat && styles.activeText]}>
-                {cat}
-              </CustomText>
-            </TouchableOpacity>
-          ))}
-        </View>
+       {/* Top Tab Navigator for Categories */}
+<View >
+  <TopTabNavigator />
+</View>
+
        
         <BannerCard />
         <View style={styles.offerHeader}>

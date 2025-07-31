@@ -21,6 +21,7 @@ import CustomTextInput from '../components/CustomTextInput';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useUser } from '../context/UserContext';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import Feather from 'react-native-vector-icons/Feather';
 
 type RootStackParamList = {
   Login: undefined;
@@ -46,6 +47,8 @@ export default function CreateAccountScreen() {
   const [countryCode, setCountryCode] = useState<CountryCode>('US');
   const [country, setCountry] = useState<Country | null>(null);
   const [pickerVisible, setPickerVisible] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
   const { setUser } = useUser(); 
 
   const [errors, setErrors] = useState<ErrorState>({});
@@ -123,14 +126,28 @@ if (!phone.trim()) {
       />
       {errors.email ? <CustomText style={styles.errorText}>{errors.email}</CustomText> : null}
 
-      <CustomTextInput
-        placeholder="Password"
-        style={[styles.input, password.length === 0 && styles.boldPlaceholder]}
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-        placeholderTextColor="#999"
-      />
+<View style={{ position: 'relative', width: '100%' }}>
+  <CustomTextInput
+    placeholder="Password"
+    style={[styles.input, password.length === 0 && styles.boldPlaceholder]}
+    value={password}
+    onChangeText={setPassword}
+    secureTextEntry={!showPassword}
+    placeholderTextColor="#999"
+  />
+
+  <TouchableOpacity
+    onPress={() => setShowPassword(!showPassword)}
+    style={styles.eye}
+  >
+    <Feather
+      name={showPassword ? 'eye' : 'eye-off'}
+      size={20}
+      color={colors.primary}
+    />
+  </TouchableOpacity>
+</View>
+
 
       <View style={styles.phoneContainer}>
         <View style={styles.countryPickerWrapper}>
@@ -247,6 +264,13 @@ const styles = StyleSheet.create({
   boldPlaceholder: {
     color: colors.primary,
     fontFamily: fonts.nunitoBold,
+  },
+    eye:{
+      position: 'absolute',
+      right: 20,
+      top: '45%',
+      transform: [{ translateY: -12 }],
+      zIndex: 1,
   },
   errorText: {
     color: colors.error,

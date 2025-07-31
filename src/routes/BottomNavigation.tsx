@@ -47,7 +47,6 @@ export default function BottomNavigation() {
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Search" component={SearchScreen} />
       <Tab.Screen name="Notifications" component={NotificationScreen} />
       <Tab.Screen name="Cart" component={CartScreen} />
     </Tab.Navigator>
